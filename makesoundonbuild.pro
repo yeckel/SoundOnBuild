@@ -46,3 +46,6 @@ include($$QTCREATOR_SOURCES/src/qtcreatorplugin.pri)
 
 QT += multimedia
 
+RESOURCES += \
+    sounds.qrc
+

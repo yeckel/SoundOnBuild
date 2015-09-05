@@ -32,29 +32,10 @@ MakeSoundOnBuildPlugin::~MakeSoundOnBuildPlugin()
 
 bool MakeSoundOnBuildPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
-    // Register objects in the plugin manager's object pool
-    // Load settings
-    // Add actions to menus
-    // Connect to other plugins' signals
-    // In the initialize function, a plugin can be sure that the plugins it
-    // depends on have initialized their members.
-
     Q_UNUSED(arguments)
     Q_UNUSED(errorString)
 
-    QAction *action = new QAction(tr("MakeSoundOnBuild action"), this);
-    Core::Command *cmd = Core::ActionManager::registerAction(action, Constants::ACTION_ID,
-                                                             Core::Context(Core::Constants::C_GLOBAL));
-    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Alt+Meta+A")));
-    connect(action, SIGNAL(triggered()), this, SLOT(triggerAction()));
-
-    Core::ActionContainer *menu = Core::ActionManager::createMenu(Constants::MENU_ID);
-    menu->menu()->setTitle(tr("MakeSoundOnBuild"));
-    menu->addAction(cmd);
-    Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
-
     connect(Core::ProgressManager::instance(),SIGNAL(allTasksFinished(Core::Id)),this,SLOT(playSound(Core::Id)));
-
     return true;
 }
 
@@ -73,16 +54,9 @@ ExtensionSystem::IPlugin::ShutdownFlag MakeSoundOnBuildPlugin::aboutToShutdown()
     return SynchronousShutdown;
 }
 
-void MakeSoundOnBuildPlugin::triggerAction()
-{
-    QMessageBox::information(Core::ICore::mainWindow(),
-                             tr("Action triggered"),
-                             tr("This is an action from MakeSoundOnBuild."));
-}
-
 void MakeSoundOnBuildPlugin::playSound(Core::Id id)
 {
     if (id.toSetting().toString() == QStringLiteral("ProjectExplorer.Task.Build"))
-        QSound::play(QStringLiteral("/home/libor/qt_projects/SoundOnBuild/kids-cheer-01.wav"));
+        QSound::play(QStringLiteral(":/kids-cheer-01.wav"));
 }
 

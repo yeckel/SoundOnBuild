@@ -24,7 +24,6 @@ public:
     ShutdownFlag aboutToShutdown();
 
 private slots:
-    void triggerAction();
     void playSound(Core::Id id);
 };
 
