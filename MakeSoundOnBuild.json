@@ -1,0 +1,14 @@
+{
+    "Name" : "MakeSoundOnBuild",
+    "Version" : "0.0.2",
+    "CompatVersion" : "0.0.1",
+    "Vendor" : "LiborTomsik",
+    "Copyright" : "",
+    "License" : "GPLv3",
+    "Description" : "Makes sound notification when build is completed or failed",
+    "Url" : "http://www.tomsik.eu",
+    "Dependencies" : [
+        { "Name" : "Core", "Version" : "3.5.81" }
+    ]
+}
+
